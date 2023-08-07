@@ -47,6 +47,7 @@ public class DoMethodExtPoint {
             throw new RuntimeException("annotation @DoMethodExt set method:" + methodName + "returnType is no boolean");
         }
 
+        // 获取代理对象，通过反射执行注解的方法
         boolean invoke = (boolean)methodExt.invoke(joinPoint.getThis(), joinPoint.getArgs());
         return invoke ? joinPoint.proceed() : JSON.parseObject(doMethodExt.returnJson(), method.getReturnType());
     }
